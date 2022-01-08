@@ -2,7 +2,44 @@
 
 {% block title %}Acceuil{% endblock %}
 
-{% block liste %}
+{% block body %}
+    <div class="row">_ </div>
+        <div class="container-fluid">
+        
+            <div class="row">
+                <div class="col-9">
+                    <div class="p-3 border bg-light">
+                        <BR><h1 class="text-center">Liste de stages </h1><BR><hr><BR>
+                        <ul>
+                            <li>stage 1</li>
+                            <li>stage 2</li>
+                            <li>stage 3</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-3 text-center">
+                    <div class="p-3 border bg-light">
+                        <BR><h1> Filtres </h1><BR><hr><BR>
+                        <h3 class="border">Formations</h3><BR>
+                        <ul>
+                            <li>Formations 1</li>
+                            <li>Formations 2</li>
+                            <li>Formations 3</li>
+                        </ul>
+                        <BR><hr><BR><h3 class="border">Entreprises</h3><BR>
+                        <ul>
+                            <li>Entreprises 1</li>
+                            <li>Entreprises 2</li>
+                            <li>Entreprises 3</li>
+                        </ul>   
+                    </div>
+                </div>
+                
+            </div>
+        </div>
 
-<h1> Bienvenue sur la page d'accueil de Prostages </h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+    crossorigin="anonymous"></script>
+
 {% endblock %}
