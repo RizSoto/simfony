@@ -53,6 +53,12 @@ class Entreprise
     {
         return $this->id;
     }
+    public function setId(string $id): self
+    {
+        $this->id = $id;
+
+        return $this;}
+    
 
     public function getActivite(): ?string
     {

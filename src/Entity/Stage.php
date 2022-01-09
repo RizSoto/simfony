@@ -36,7 +36,7 @@ class Stage
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="entreprises")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $Entreprise;
 
@@ -54,7 +54,11 @@ class Stage
     {
         return $this->id;
     }
+    public function setId(string $id): self
+    {
+        $this->id = $id;
 
+        return $this;}
     public function getTitre(): ?string
     {
         return $this->titre;

@@ -19,7 +19,16 @@
                 </div>
                 <div class="col-3 text-center">
                     <div class="p-3 border bg-light">
-                        <BR><h1> Filtres </h1><BR><hr><BR>
+                        <BR><h1>✽ Filtres ✽</h1><BR><hr><BR>
+                        <h3 class="border">📚 Formations</h3><BR>
+                        {% for formation in ressourcesFormations %}
+                            <a href={{path('Formations',{id:formation.id})}} class="text-black text-decoration-none"><h5>{{ formation.nomLong }}</h5></a>
+                        {% endfor %}
+                        <BR><hr><BR><h3 class="border">💻 Entreprises</h3><BR>
+                        {% for entreprise in ressourcesEntreprises %}
+                            <a href={{path('Entreprises',{id:entreprise.id})}} class="text-black text-decoration-none"><h5>{{ entreprise.nom }}</h5></a>
+                        {% endfor %} 
+                        {#<BR><h1> Filtres </h1><BR><hr><BR>
                         <h3 class="border">Formations</h3><BR>
                         <ul>
                             <li>Formations 1</li>
@@ -31,7 +40,7 @@
                             <li>Entreprises 1</li>
                             <li>Entreprises 2</li>
                             <li>Entreprises 3</li>
-                        </ul>   
+                        </ul>#}   
                     </div>
                 </div>
                 
