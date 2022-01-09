@@ -34,8 +34,7 @@ class AppFixtures extends Fixture
         for($i=0; $i < count($lesNomsEntreprises); $i=$i+1)
         {
             $entreprise = new Entreprise();
-            $entreprise->setId($i);
-            $entreprise->setActivite($lesActivites[rand(0,9)]);
+            $entreprise->setActivite($lesActivites[rand(0,7)]);
             $entreprise->setAdresse($faker->streetAddress());
             $entreprise->setNom($lesNomsEntreprises[$i]);
             $entreprise->setUrlSite($faker->domainName());
@@ -47,7 +46,6 @@ class AppFixtures extends Fixture
         for($i=0; $i < count($lesNomsFormations); $i=$i+1)
         {
             $formation = new Formation();
-            $formation->setId($i);
             $formation->setNomLong($lesNomsFormations[$i]);
             $formation->setNomCourt($lesDiminutifsFormations[$i]);
             $lesFormations[$i]=$formation;    //Ajout des formations dans le tableau
@@ -60,17 +58,13 @@ class AppFixtures extends Fixture
         for($i=1; $i <= $nbStages; $i=$i+1)
         {
             $stage = new Stage();
-            $stage->setId($i);
-            $stage->setTitre($titre1[rand(0,9)].$titre2[rand(0,9)].$titre3[rand(0,9)]);
-            $stage->setDescription($faker->realText($maxNbChars = 250, $indexSize = 2));
+            $stage->setTitre($titre1[rand(0,6)].$titre2[rand(0,6)].$titre3[rand(0,7)]);
+            $stage->setDescription($faker->realText($maxNbChars = 100, $indexSize = 2));
             $stage->setEmail($faker->safeEmail());
             $stage->setEntreprise($lesEntreprises[rand(0,9)]);
-            $numFormation = $faker->numberBetween(0,9);
+            $numFormation = $faker->numberBetween(0,6);
             $stage->addFormation($lesFormations[$numFormation]);
 
-            // Générer 1 ou 2 formations DIFFÉRENTES
-            $nbFormations = rand(1,2);
-            $numFormation = $faker->numberBetween(0,9);
 
             $manager->persist($stage);
         }

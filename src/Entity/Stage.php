@@ -25,18 +25,18 @@ class Stage
     private $titre;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=100)
      */
     private $description;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=255)
      */
     private $email;
 
     /**
      * @ORM\ManyToOne(targetEntity=Entreprise::class, inversedBy="entreprises")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\JoinColumn(nullable=false)
      */
     private $Entreprise;
 
@@ -54,11 +54,7 @@ class Stage
     {
         return $this->id;
     }
-    public function setId(string $id): self
-    {
-        $this->id = $id;
 
-        return $this;}
     public function getTitre(): ?string
     {
         return $this->titre;

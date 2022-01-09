@@ -17,17 +17,23 @@
             </div>
             <div class="row">&nbsp; </div>
             <div class="row">
-                <div class="col-12 text-center">
-                    <div class="p-3 border bg-light">
-                        
-                        <BR><hr><BR><h3 class="border">Liste des formations de l'IUT</h3><BR>
-                        <ul>
-                            <li>formation 1</li>
-                            <li>formation 2</li>
-                            <li>formation 3</li>
-                        </ul>   
-                    </div>
+                <div class="col-10 offset-1">
+                <div class="p-3 border bg-light">
+                    <h2>Voici les stages proposés par la formation suivante : {{ ressourcesFormation.nomLong }}</h2><BR>
+                    {% for stage in lesStages %}
+                        <div class="card-body mb-4">
+                            <div class="card-header bg-success">
+                                <a href="../../stages/{{ stage.id }}" class="text-white text-decoration-none"><h2>{{ stage.titre }}</h2></a>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><h6>Email : {{ stage.email }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    {% endfor %}
                 </div>
+            </div>
                 
             </div>
         </div>

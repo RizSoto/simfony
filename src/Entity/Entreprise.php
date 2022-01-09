@@ -35,7 +35,7 @@ class Entreprise
     private $nom;
 
     /**
-     * @ORM\Column(type="string", length=60)
+     * @ORM\Column(type="string", length=50)
      */
     private $urlSite;
 
@@ -53,12 +53,6 @@ class Entreprise
     {
         return $this->id;
     }
-    public function setId(string $id): self
-    {
-        $this->id = $id;
-
-        return $this;}
-    
 
     public function getActivite(): ?string
     {

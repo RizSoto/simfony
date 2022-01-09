@@ -11,36 +11,38 @@
                     <div class="p-3 border bg-light">
                         <BR><h1 class="text-center">Liste de stages </h1><BR><hr><BR>
                         <ul>
-                            <li>stage 1</li>
-                            <li>stage 2</li>
-                            <li>stage 3</li>
+                            {% for stage in ressourcesStages %}
+                                <div class="card-body">
+                                    <div class="card-header bg-success mb-3">
+                                        <a href=./stages/{{ stage.id }} class="text-white text-decoration-none"><h2> {{ stage.titre }}</h2></a>
+                                    </div>
+                                    <div class="card-body">
+                                        <ul class="list-group list-group-flush">
+                                            <li class="list-group-item"><h6> Mail : {{ stage.email }}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
                 <div class="col-3 text-center">
                     <div class="p-3 border bg-light">
-                        <BR><h1>✽ Filtres ✽</h1><BR><hr><BR>
-                        <h3 class="border">📚 Formations</h3><BR>
-                        {% for formation in ressourcesFormations %}
-                            <a href={{path('Formations',{id:formation.id})}} class="text-black text-decoration-none"><h5>{{ formation.nomLong }}</h5></a>
-                        {% endfor %}
-                        <BR><hr><BR><h3 class="border">💻 Entreprises</h3><BR>
-                        {% for entreprise in ressourcesEntreprises %}
-                            <a href={{path('Entreprises',{id:entreprise.id})}} class="text-black text-decoration-none"><h5>{{ entreprise.nom }}</h5></a>
-                        {% endfor %} 
-                        {#<BR><h1> Filtres </h1><BR><hr><BR>
+                        <BR><h1> Filtres </h1><BR><hr><BR>
                         <h3 class="border">Formations</h3><BR>
                         <ul>
-                            <li>Formations 1</li>
-                            <li>Formations 2</li>
-                            <li>Formations 3</li>
+                            {% for formation in ressourcesFormations %}
+                                <li><a href=./formations/{{ formation.id }} class="text-black text-decoration-none"><h5>{{ formation.nomLong }}</h5></a></li>
+                            {% endfor %}
                         </ul>
                         <BR><hr><BR><h3 class="border">Entreprises</h3><BR>
                         <ul>
-                            <li>Entreprises 1</li>
-                            <li>Entreprises 2</li>
-                            <li>Entreprises 3</li>
-                        </ul>#}   
+                            {% for entreprise in ressourcesEntreprises %}
+                                <a href=./entreprises/{{ entreprise.id }} class="text-black text-decoration-none"><h5>{{ entreprise.nom }}</h5></a>
+                            {% endfor %}
+                           
+                        </ul>
                     </div>
                 </div>
                 
