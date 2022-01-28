@@ -8,6 +8,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Stage;
 use App\Entity\Entreprise;
 use App\Entity\Formation;
+use App\Entity\StageRepository;
+use App\Entity\EntrepriseRepository;
+use App\Entity\FormationRepository;
 
 class ProStageController extends AbstractController
 {
@@ -34,20 +37,19 @@ class ProStageController extends AbstractController
             'ressourcesEntreprises' => $ressourcesEntreprises,
         ]);}
     /**
-     * @Route("/entreprises/{id}", name="entreprises")
+     * @Route("/entreprises/{nom}", name="entreprises")
      */
-    public function entreprises($id) 
+    public function entreprises($nom) 
     {
         // Récupérer les repository des entités Stage et Entreprise
        $repositoryStages = $this->getDoctrine()->getRepository(Stage::class);
        $repositoryEntreprise = $this->getDoctrine()->getRepository(Entreprise::class);
 
        // Récupérer les ressources enregistrées en BD
-       $ressourcesStagesParEntreprise = $repositoryStages->findBy(["Entreprise" => $id]);
-       $ressourcesEntreprise = $repositoryEntreprise->find($id);
-
+       //$ressourcesStagesParEntreprise = $repositoryStages->findBy(["Entreprise" => $id]);
+       $ressourcesEntreprise = $repositoryEntreprise->find($nom); 
+       $ressourcesStagesParEntreprise = $repositoryStages->findByEntreprise([$nom]);
         return $this->render('pro_stage/Entreprises.html.twig', [
-            'controller_name' => 'entreprisesController',
             'ressourcesStagesParEntreprise' => $ressourcesStagesParEntreprise, 
             'ressourcesEntreprise' => $ressourcesEntreprise]);}
     /**
@@ -70,7 +72,8 @@ class ProStageController extends AbstractController
             'controller_name' => 'FormationController',
             'ressourcesStagesParFormation' => $ressourcesStagesParFormation, 
             'ressourcesFormation' => $ressourcesFormation, 
-            'lesStages' => $lesStages]);}
+            'lesStages' => $lesStages]);
+        }
 
     /**
      * @Route("/stages/{id}", name="stages")
@@ -84,8 +87,17 @@ class ProStageController extends AbstractController
         $lesFormations = $ressourceStage->getFormation();
 
         return $this->render('pro_stage/stages.html.twig',['controller_name' => 'StageController',
-        'ressourceStage' => $ressourceStage,
-        'lesFormations' => $lesFormations, ] );}
+        'ressourceStage' => $ressourceStage ] );}
 
+    /**
+     * @Route("/StageParnomEntreprise/{nom}", name="listeStage_ParNomEntreprise")
+     */
+    public function listeStageParnomEntreprise(StageRepository $repositoryStage, $nom) 
+    {
+        
+        $ressourceStage = $repositoryStage->findByEntreprise($nom);
 
+        return $this->render('pro_stage/stages.html.twig',
+        ['ressourceStage' => $ressourceStage ] );
+    }
 }

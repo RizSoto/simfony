@@ -20,7 +20,7 @@
                     <div class="p-3 border bg-light">
                         <ul class="list-group">
                             <li class="list-group-item active" aria-current="true">Nom:{{ressourceStage.titre}}</li>
-                            <li class="list-group-item">Formation :{% for formation in lesFormations %}{{ formation.nomLong }}{% endfor %}</li>
+                            <li class="list-group-item">Formation :{% for formation in ressourceStage.formation %}{{ formation.nomLong }}{% endfor %}</li>
                             <li class="list-group-item">Entreprise:{{ ressourceStage.Entreprise.nom }}</li>
                             <li class="list-group-item">Activite:{{ ressourceStage.Entreprise.activite }}</li>
                             <li class="list-group-item">Email :{{ressourceStage.email}}</li>
