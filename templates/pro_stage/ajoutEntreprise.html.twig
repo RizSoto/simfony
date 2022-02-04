@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block titrePage %}
+{% if action == "ajouter" %}
+Ajout d'une entreprise acceuillant des stagiaire
+{% else %}
+Modifier une entreprise 
+{% endif %}
+{% endblock %}
+
+{% block contenuPage %}
+Saisissez les caractéristiques de l'entreprise que vous souhaitez partager.
+
+{{ form_start(vueFormulaire) }}
+
+{{ form_row(vueFormulaire.nom, {'attr':{'placeholder':"nom de l'entreprise..."}})}}
+
+{{ form_row(vueFormulaire.activite, {'attr':{'placeholder':"activite de l'entreprise..."}})}}
+
+{{ form_row(vueFormulaire.adresse, {'attr':{'placeholder':"adresse de l'entreprise..."}})}}
+
+{{ form_row(vueFormulaire.urlSite, {'attr':{'placeholder':"Url du site de l'entreprise..."}})}}
+
+{#
+{{ form_row(vueFormulaire.typeRessource, {'label':"Type de la ressource"})}}
+{{ form_row(vueFormulaire.modules, {'label':"Modules dans lesquels la ressource peut être utilisée"})}}
+#}
+
+<button type="submit" class="btn btn-dark">Enregistrer</button>
+
+{{ form_end(vueFormulaire) }}
+
+
+{% endblock %}

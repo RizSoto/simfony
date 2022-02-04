@@ -36,6 +36,35 @@ class ProStageController extends AbstractController
             'ressourcesFormations' => $ressourcesFormations,
             'ressourcesEntreprises' => $ressourcesEntreprises,
         ]);}
+          /**
+     * @Route("/ajoutEntreprise", name="ajoutEntreprise")
+     */
+    public function ajoutEntreprise(): Response
+    {//Création d'une ressource vierge qui sera remplie par le formulaire
+        $entreprise = new Entreprise();
+
+        // Création du formulaire permettant de saisir une ressource
+        $formulaireEntreprise = $this->createForm(EntrepriseType::class, $entreprise);
+
+        /* On demande au formulaire d'analyser la dernière requête Http. Si le tableau POST contenu
+        dans cette requête contient des variables titre, descriptif, etc. alors la méthode handleRequest()
+        récupère les valeurs de ces variables et les affecte à l'objet $ressource*/
+        $formulaireEntreprise->handleRequest($request);
+
+         if ($formulaireEntreprise->isSubmitted() && $formulaireEntreprise->isValid())
+         {
+            // Mémoriser la date d'ajout de la ressources
+            $entreprise->setDateAjout(new \dateTime());
+            // Enregistrer la ressource en base de donnéelse
+            $manager->persist($entreprise);
+            $manager->flush();
+
+            // Rediriger l'utilisateur vers la page d'accueil
+            return $this->redirectToRoute('pro_stage');
+         }
+
+        // Afficher la page présentant le formulaire d'ajout d'une ressource
+        return $this->render('pro_stage/ajoutEntreprise.html.twig',['vueFormulaire' => $formulaireEntreprise->createView(), 'action'=>"ajouter"]);}
     /**
      * @Route("/entreprises/{nom}", name="entreprises")
      */
@@ -90,9 +119,9 @@ class ProStageController extends AbstractController
         'ressourceStage' => $ressourceStage ] );}
 
     /**
-     * @Route("/StageParnomEntreprise/{nom}", name="listeStage_ParNomEntreprise")
+     * @Route("/StageParNomEntreprise/{nom}", name="listeStage_ParNomEntreprise")
      */
-    public function listeStageParnomEntreprise(StageRepository $repositoryStage, $nom) 
+    public function listeStageParNomEntreprise(StageRepository $repositoryStage, $nom) 
     {
         
         $ressourceStage = $repositoryStage->findByEntreprise($nom);
