@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Ajouter un stage
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+            <div class="col-10 offset-1 mt-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../">Accueil</a></li>                      
+                        <li class="breadcrumb-item" aria-current="page">Ajouter un stage</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+<div class="row my-4"></div>
+<div class="row mb-5">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">  
+                        <h2>Ajouter un stage</h2>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ form_label(vueFormulaireStage) }}</h4>
+                        {{ form_start(vueFormulaireStage, {'attr': {'novalidate': 'novalidate'}}) }}
+                            {{ form_row(vueFormulaireStage.titre, {'attr':{'placeholder':"Conception de site web"}}) }}<br>
+                            {{ form_row(vueFormulaireStage.description, {'attr':{'placeholder':"Ex : Ce stage permet de développer un site web en PHP."}}) }}<br>                      
+                            {{ form_row(vueFormulaireStage.email, {'attr':{'placeholder':"Ex : profenpoche@gmail.com"}}) }}<br> 
+
+                            <h4>{{ form_label(vueFormulaireStage.Entreprise) }}</h4>
+                            {{ form_start(vueFormulaireStage.Entreprise, {'attr': {'novalidate': 'novalidate'}}) }}<br>                      
+                                {{ form_row(vueFormulaireStage.Entreprise.activite) }}<br>                      
+                                {{ form_row(vueFormulaireStage.Entreprise.adresse) }}<br>                      
+                                {{ form_row(vueFormulaireStage.Entreprise.nom) }}<br>                      
+                                {{ form_row(vueFormulaireStage.Entreprise.urlSite) }}<br>  
+                            {{ form_end(vueFormulaireStage.Entreprise) }}<br>  
+            
+                            {{ form_row(vueFormulaireStage.Formation) }}<br>            
+                            
+                            <br><br><button type="submit" class="btn btn-dark">Ajouter</button>
+                        {{ form_end(vueFormulaireStage) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row my-5"></div>
+<div class="row my-5"></div>
+
+{% endblock %}

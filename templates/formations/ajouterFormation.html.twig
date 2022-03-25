@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Ajouter une formation
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+            <div class="col-10 offset-1 mt-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../">Accueil</a></li>                      
+                        <li class="breadcrumb-item" aria-current="page">Ajouter une formation</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+<div class="row my-4"></div>
+<div class="row mb-5">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">  
+                        <h2>Ajouter une formation</h2>
+                    </div>
+                    <div class="card-body">
+                     {{ form_start(vueFormulaireFormation, {'attr': {'novalidate': 'novalidate'}}) }}
+                        {{ form_row(vueFormulaireFormation.nomCourt, {'attr':{'placeholder':"Ex : DUT Info"}}) }}<br>
+                        {{ form_row(vueFormulaireFormation.nomLong, {'attr':{'placeholder':"Ex : Diplôme Universitaire de Technologie en informatique"}}) }}<br>                      
+                        <br><br><button type="submit" class="btn btn-dark">Ajouter</button>
+                    {{ form_end(vueFormulaireFormation) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row my-5"></div>
+<div class="row my-5"></div>
+
+{% endblock %}

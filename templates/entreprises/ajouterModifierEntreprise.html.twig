@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+
+{% if action == "ajouter" %}
+Ajouter une entreprise
+{% else %}
+Modifier l'entreprise
+{% endif %}
+{% endblock %}
+
+{% block body %}
+
+
+<div class="row">
+            <div class="col-10 offset-1 mt-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../">Accueil</a></li>
+                        {% if action == "ajouter" %}
+                        <li class="breadcrumb-item" aria-current="page">Ajouter une entreprise</li>
+                        {% else %}
+                        <li class="breadcrumb-item" aria-current="page">Modifier une entreprise</li>
+                        <li class="breadcrumb-item" aria-current="page">{{ entreprise.nom }}</li>
+                        {% endif %}
+                    </ol>
+                </nav>
+            </div>
+        </div>
+<div class="row my-4"></div>
+<div class="row mb-5">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">
+                        {% if action == "ajouter" %}
+                        <h2>Ajouter une entreprise</h2>
+                        {% else %}
+                        <h2>Modifier l'entreprise {{ entreprise.nom }}</h2>
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                     {{ form_start(vueFormulaireEntreprise, {'attr': {'novalidate': 'novalidate'}}) }}
+                        {{ form_row(vueFormulaireEntreprise.activite, {'attr':{'placeholder':"Ex : Développement web"}}) }}<br>
+                        {{ form_row(vueFormulaireEntreprise.adresse, {'attr':{'placeholder':"Ex :54 rue des pyrénées"}}) }}<br>
+                        {{ form_row(vueFormulaireEntreprise.nom, {'attr':{'placeholder':"Ex : Prof en poche"}}) }}<br>
+                        {{ form_row(vueFormulaireEntreprise.urlSite, {'attr':{'placeholder':"Ex : http://www.profenpoche.com"}}) }}
+                        {% if action == "ajouter" %}
+                        <br><br><button type="submit" class="btn btn-dark">Ajouter</button>
+                        {% else %}
+                        <br><br><button type="submit" class="btn btn-dark">Modifier</button>
+                        {% endif %}
+                    {{ form_end(vueFormulaireEntreprise) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row my-5"></div>
+<div class="row my-5"></div>
+
+{% endblock %}

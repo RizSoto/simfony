@@ -6,6 +6,7 @@ use App\Repository\FormationRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=FormationRepository::class)
@@ -21,11 +22,15 @@ class Formation
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="!! Le nom long doit être renseigné!!")
+     * @Assert\Regex(pattern="#.{6,}#", message="!! Le nom doit comporter au minimum 6 caractères!!")
      */
     private $nomLong;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank(message="!! Le nom court doit être renseigné!!")
+     * @Assert\Regex(pattern="#.{2,10}#", message="!! Le nom de la formation doit comporter entre 2 et 10 caractères!!")
      */
     private $nomCourt;
 

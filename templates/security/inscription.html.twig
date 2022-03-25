@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription sur ProStages{% endblock %}
+{% block menu %}{% endblock %}
+
+
+{% block body %}
+
+<div class="row">
+            <div class="col-10 offset-1 mt-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../">Accueil</a></li>                      
+                        <li class="breadcrumb-item" aria-current="page">S'incrire</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+<div class="row my-4"></div>
+<div class="row mb-5">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">  
+                        <h2>Nouvel utilisateur</h2>
+                    </div>
+                    <div class="card-body">
+                        <h4>{{ form_label(vueFormulaireUtilisateur) }}</h4>
+                        {{ form_start(vueFormulaireUtilisateur, {'attr': {'novalidate': 'novalidate'}}) }}
+                            {{ form_row(vueFormulaireUtilisateur.username) }}<br>
+                            {{ form_row(vueFormulaireUtilisateur.password) }}<br>                      
+                            {{ form_row(vueFormulaireUtilisateur.prenom, {'attr':{'placeholder':"Ex : Pierre"}}) }}<br> 
+                            {{ form_row(vueFormulaireUtilisateur.nom, {'attr':{'placeholder':"Ex : Dupond"}}) }}<br> 
+
+                            <br><br><button type="submit" class="btn btn-dark">S'inscrire</button>
+                        {{ form_end(vueFormulaireUtilisateur) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+<div class="row my-5"></div>
+<div class="row my-5"></div>
+
+
+{% endblock %}

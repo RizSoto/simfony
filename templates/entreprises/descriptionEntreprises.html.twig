@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Description Entreprises{% endblock %}
+
+{% block body %}
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-10 offset-1 mt-4">
+                <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="../">Accueil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Entreprises</li>
+                    </ol>
+                </nav>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <div class="col-10 offset-1">
+                <div class="p-3 border bg-light">
+                    <h2>Voici les entreprises qui proposent un stage</h2><BR>
+                    {% for entreprise in ressourcesEntreprise %}
+                        <div class="card mb-4">
+                            <div class="card-header bg-dark">
+                                <h2 class="text-white">📝 {{ entreprise.nom }}</h2>
+                            </div>
+                            <div class="card-body">
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item"><h6>🔨 Activité : {{entreprise.activite}}</li>
+                                    <li class="list-group-item"><h6>🏠 Adresse : {{entreprise.adresse}}</li>
+                                    <li class="list-group-item"><h6>🔗 URL : {{entreprise.UrlSite}}</li>
+                                    <li class="list-group-item"><a href={{path('Entreprises',{nom:entreprise.nom})}} class="text-start text-black"><h6>📋 Voir les stages proposés</a>
+                                    <a href={{path('ModifierEntreprise',{id:entreprise.id})}} class="text-end text-black text-decoration-none"><h6>Modifier ⚙</h6></a></li>
+                                </ul>
+                            </div>
+                        </div><BR>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+{% endblock %}

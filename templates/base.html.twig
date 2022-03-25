@@ -1,22 +1,28 @@
 <!DOCTYPE html>
 <html>
     <head>
-    {% block css %}
-        <style> 
-            .body { 
-                background-color: rgb(241,237,236); 
-            } 
-            .barre {
-                background-color: rgb(50,50,50);
-                height: 3px;
-                width: 100%;
-            }
-        </style> 
-    {% endblock %}
+            {% block css %}
+                <style> 
+                    .body { 
+                        background-color: rgb(241,237,236); 
+                    } 
+                    .barre {
+                        background-color: rgb(50,50,50);
+                        height: 3px;
+                        width: 100%;
+                    }
+                    .footer{
+                        position:relative;
+                        bottom:0;
+                        width:100%;
+                    }
+                </style> 
+            {% endblock %}
 
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <title>{% block title %}Prostages{% endblock %}</title>
   
         {% block stylesheets %}
              <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" 
@@ -40,10 +46,62 @@
                 <div class="barre"></div>
             {% endblock %}
         </header>
+{% block menu %}
+        <div class="row">
+              <div class="col-md-12">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse  justify-content-between" id="bs-example-navbar-collapse-1">
+
+                      {# Fonctionnalités pour l'administrateur #}
+                      {% if is_granted('ROLE_ADMIN') %}
+                        <a class="nav-link" href="{{path('AjoutFormation')}}">
+                          <font color="#5D5C5C">Ajouter une formation</font>
+                        </a>
+
+                        <a class="nav-link" href="{{path('AjoutEntreprise')}}">
+                          <font color="#5D5C5C">Ajouter une entreprise</font>
+                        </a>
+                      
+                      {% endif %}
+
+                      {# Fonctionnalités pour l'utilisateur authentifié #}
+                      {% if is_granted('ROLE_USER') %}
+
+                      <a class="nav-link" href="{{path('AjoutStage')}}">
+                          <font color="#5D5C5C">Ajouter un stage</font>
+                        </a>
+
+                        <a class="nav-link" href="{{path('app_logout')}}">
+                          <b><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Simpleicons_Interface_power-symbol-1.svg/15px-Simpleicons_Interface_power-symbol-1.svg.png"><font color="black"> {{ app.user.prenom }} {{ app.user.nom }} - Déconnexion</font></b>
+                        </a>  
+
+                      {% else %}
+                      {# Fonctionnalités pour l'utilisateur NON authentifié #}   
+                       <a class="nav-link" href="{{path('inscription')}}">
+                            <b><font color="black"> S'inscrire</font></b>
+                        </a>
+                      <a class="nav-link" href="{{path('app_login')}}">                   
+                        <b><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Simpleicons_Interface_power-symbol-1.svg/15px-Simpleicons_Interface_power-symbol-1.svg.png"><font color="black"> Connexion</font></b>
+                      </a>
+                      {% endif %}
+                  </div>
+                </nav>
+              </div>
+              <div class="barre"></div>
+            </div>
+          {% endblock %}
+
 
     {% block body %}{% endblock %}
     </body>
 
+    
+    
 
 </html>
+
+
 
