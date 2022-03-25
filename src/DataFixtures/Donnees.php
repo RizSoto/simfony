@@ -13,7 +13,14 @@ class Donnees extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-
+        /* 
+            login mdp admin: 
+                login: admin
+                mdp: admin
+            user:
+                login: test
+                mdp: test
+        */
         //Module pour générer des données aléatoires
         $faker = \Faker\Factory::create('fr_FR');
 
